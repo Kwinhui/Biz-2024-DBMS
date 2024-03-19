@@ -34,5 +34,30 @@ CREATE TABLE tbl_score (
 		s_score	INT	NOT NULL ,
 		PRIMARY KEY(s_stnum,s_subject)	
 );
+SELECT COUNT(*) FROM tbl_score;
+
+CREATE TABLE tbl_student(
+	st_num	VARCHAR(5)		PRIMARY KEY,
+	st_name	VARCHAR(10)	NOT NULL	,
+	st_dept	VARCHAR(20)		,
+	st_grade	VARCHAR(3)	,
+	st_tel	VARCHAR(20)		,
+	st_addr	VARCHAR(125)		
+
+);
+
+SELECT *
+FROM tbl_student ST
+	JOIN tbl_score S
+		ON ST.st_num = s.s_stnum
+WHERE st_num = 'S0010';
+	-- n			-- 1 
+-- 성적테이블과 학생테이블간에 FK 설정
+ALTER TABLE tbl_score
+ADD CONSTRAINT FOREIGN KEY fk_num (s_stnum)
+REFERENCES tbl_student(st_num);
+
+
+
 
 
